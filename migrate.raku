@@ -90,7 +90,6 @@ class Folder {
 
 }
 
-my $seen = 0;
 sub traverse ( $current-folder, *@parent-folders ) {
 
     my $indent = '  ' x @parent-folders.elems;
@@ -109,13 +108,11 @@ sub traverse ( $current-folder, *@parent-folders ) {
             say $indent, '  -' , $picture.name;
 
             my $source-file = IO::Path.new( '/Pictures/Photos Library.photoslibrary/Masters/' );
-            $source-file .= add( $picture.path.lc );
-            die $source-file unless $source-file.e;
+            $source-file .= add( $picture.path );
             try {
                 $source-file.copy( $destination-path.add( $source-file.basename ), :createonly );
             }
             $source-file.copy( $destination-path.add( $picture.id ~ '.' ~ $source-file.extension ), :createonly ) if $!;
-            $seen++;
         }
     }
 
@@ -125,5 +122,3 @@ sub traverse ( $current-folder, *@parent-folders ) {
 }
 
 traverse( Folder.new( uuid => 'TopLevelAlbums' ) );
-
-say $seen;

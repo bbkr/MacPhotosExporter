@@ -25,3 +25,6 @@ raku /Pictures/migrate.raku
 
 It should print detected Folders, Albums and Photos and will create `TopLevelAlbums` directory containing them in exactly the same layout.
 
+# Article
+
+Migration code logic is explained [here](https://dev.to/bbkr/migrate-macos-photos-folders-and-albums-to-plain-tree-of-directories-2c1).
